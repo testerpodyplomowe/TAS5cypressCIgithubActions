@@ -5,7 +5,7 @@
   "main": "cypress.config.js",
   "scripts": {
     "test": "cypress open",
-    "cy:run": "npx cypress run", 
+    "cy:run": "npx cypress run",
     "cy:run-cloud": "npx cypress run --record --key 30de5d61-f27d-45c3-af80-3ee10e6e9192",
     "mytests": "npx cypress run --spec 'cypress/e2e/01test.cy.js'"
   },
@@ -15,7 +15,6 @@
   "type": "commonjs",
   "dependencies": {
     "cypress-mochawesome-reporter": "^4.0.2",
-    "prettier": "^3.8.3",
-    "typescript": "^6.0.3"
+    "prettier": "^3.8.3"
   }
 }
