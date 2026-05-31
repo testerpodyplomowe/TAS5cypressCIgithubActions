@@ -1,8 +1,10 @@
 node_modules
+przykladowegotowetesty
 
 # artifacts
 cypress/videos
 cypress/screenshots
 cypress/reports
 
-przykladowegotowetesty
+#inne
+.DS_Store
