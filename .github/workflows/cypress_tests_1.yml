@@ -15,7 +15,6 @@ jobs:
       - run: npm ci # uruchom skrypty npm w srodowisku ciaglej integracji 
   #   - run: npx cypress run
       - run: npx cypress run --record
-        continue-on-error: true
         env: 
           CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
 
