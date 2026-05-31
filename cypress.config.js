@@ -1,7 +1,7 @@
 const { defineConfig } = require("cypress");
 
 module.exports = defineConfig({
-  projectId: "nswvvw",
+  projectId: "fmbo4x",
   allowCypressEnv: false,
   reporter: "cypress-mochawesome-reporter",
   reporterOptions: {

@@ -1,5 +1,5 @@
 name: CypressTests1
-on: [workflow_dispatch]
+on: [push, workflow_dispatch]
 
 jobs:
   cypress:
@@ -14,6 +14,7 @@ jobs:
 
       - run: npm ci # uruchom skrypty npm w srodowisku ciaglej integracji 
       - run: npx cypress run
-      # run: npm run mytests
-
+      - run: npx cypress run --record
+        env: 
+          CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
 
