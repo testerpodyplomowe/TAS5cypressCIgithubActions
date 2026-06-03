@@ -79,15 +79,3 @@ Projekt obsługuje automatyczną integrację z GitHub Actions do ciągłego test
 ## 📊 Raporty
 
 Projekty generuje raporty testów za pomocą Mochawesome reportera, dostępne po uruchomieniu testów.
-
-## 📝 Licencja
-
-ISC
-
-## 👤 Autor
-
-testerpodyplomowe
-
----
-
-**Dla więcej informacji**, odwiedź oficjalną dokumentację [Cypress](https://docs.cypress.io/).
