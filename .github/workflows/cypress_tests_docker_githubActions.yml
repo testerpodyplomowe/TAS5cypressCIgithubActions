@@ -1,4 +1,5 @@
-name: CypressTests1_maj  # nazwa pipeline'u (widoczna w GitHub Actions)
+name: CypressTests1_maj_Docker_dodano # nazwa pipeline'u (widoczna w GitHub Actions)
+
 on: [push, pull_request, workflow_dispatch]  # kiedy uruchamia się CI:
                                              # - push (każdy commit)
                                              # - pull request

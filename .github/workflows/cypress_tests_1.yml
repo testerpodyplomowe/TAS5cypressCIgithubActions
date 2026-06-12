@@ -1,8 +1,5 @@
-name: CypressTests1_maj  # nazwa pipeline'u (widoczna w GitHub Actions)
-on: [push, pull_request, workflow_dispatch]  # kiedy uruchamia się CI:
-                                             # - push (każdy commit)
-                                             # - pull request
-                                             # - ręczne uruchomienie
+name: CypressTests1_maj_bez_DOCKERA # nazwa pipeline'u
+on: [push, pull_request, workflow_dispatch]
 
 jobs:
   cypress:
