@@ -1,12 +1,16 @@
-name: CypressTests1_maj # nazwa pipeline'u
-on: [push, pull_request, workflow_dispatch]
+name: CypressTests1_maj  # nazwa pipeline'u (widoczna w GitHub Actions)
+on: [push, pull_request, workflow_dispatch]  # kiedy uruchamia się CI:
+                                             # - push (każdy commit)
+                                             # - pull request
+                                             # - ręczne uruchomienie
 
 jobs:
   cypress:
-    runs-on: ubuntu-latest # uruchamia na najnowszym ubuntu uwaga w chmurze !!! nie musisz go miec
+    runs-on: ubuntu-latest  # GitHub tworzy świeży Linux (runner); # uruchamia na najnowszym ubuntu uwaga w chmurze !!! nie musisz go miec
 
     steps:
-      - uses: actions/checkout@v6 # krok 1 zrob checkout z repo z ktorego bierzesz kod 
+      - name: Checkout repoclear
+        uses: actions/checkout@v6  # pobiera Twój kod z repozytorium (Dockerfile, testy, config)
       - uses: actions/setup-node@v6 # krok 2 zainstaluj srodowisko nodejs
         with:
           node-version: 24 # sami okreslamy
@@ -17,4 +21,4 @@ jobs:
       - run: npx cypress run --record
         env: 
           CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
-
+          # przekazuje secret czyli ten kod taki token dla bezpieczenstwa
