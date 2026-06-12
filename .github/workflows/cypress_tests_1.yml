@@ -3,7 +3,7 @@ on: [push, pull_request, workflow_dispatch]
 
 jobs:
   cypress:
-    runs-on: ubuntu-latest # GitHub tworzy świeży Linux (runner); # uruchamia na najnowszym ubuntu uwaga w chmurze !!! nie musisz go miec
+    runs-on: ubuntu-latest # GitHub tworzy świeży Linux (runner); # uruchamia na najnowszym ubuntu - uwaga w chmurze ! (nie musisz miec tego linuxa u siebie na kompie)
 
     steps:
       - name: Checkout repoclear
