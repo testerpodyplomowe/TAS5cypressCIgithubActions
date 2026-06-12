@@ -1,0 +1,28 @@
+name: CypressTests1_maj  # nazwa pipeline'u (widoczna w GitHub Actions)
+
+on: [push, pull_request, workflow_dispatch]  # kiedy uruchamia się CI:
+                                             # - push (każdy commit)
+                                             # - pull request
+                                             # - ręczne uruchomienie
+
+jobs:
+  cypress:
+    runs-on: ubuntu-latest  # GitHub tworzy świeży Linux (runner)
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4  # pobiera Twój kod z repozytorium (Dockerfile, testy, config)
+
+      # --- NOWE: zamiast instalować Node + Cypress w CI ---
+      - name: Build Docker image
+        run: docker build -t cypress-test .  # buduje obraz z Twojego Dockerfile
+                                             # (tu dzieje się npm install + cypress install)
+
+      # --- NOWE: uruchomienie testów w kontenerze ---
+      - name: Run Cypress tests in Docker
+        run: docker run --rm cypress-test  # uruchamia kontener i testy Cypress
+                                           # --rm = usuń kontener po zakończeniu
+
+        env:
+          CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
+          # przekazuje secret do kontenera (jeśli używasz Cypress Dashboard / record)
