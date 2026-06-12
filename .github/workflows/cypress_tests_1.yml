@@ -3,19 +3,19 @@ on: [push, pull_request, workflow_dispatch]
 
 jobs:
   cypress:
-    runs-on: ubuntu-latest  # GitHub tworzy świeży Linux (runner); # uruchamia na najnowszym ubuntu uwaga w chmurze !!! nie musisz go miec
+    runs-on: ubuntu-latest # GitHub tworzy świeży Linux (runner); # uruchamia na najnowszym ubuntu uwaga w chmurze !!! nie musisz go miec
 
     steps:
       - name: Checkout repoclear
-        uses: actions/checkout@v6  # pobiera Twój kod z repozytorium (Dockerfile, testy, config)
+        uses: actions/checkout@v6 # pobiera Twój kod z repozytorium (Dockerfile, testy, config)
       - uses: actions/setup-node@v6 # krok 2 zainstaluj srodowisko nodejs
         with:
           node-version: 24 # sami okreslamy
           cache: npm
 
-      - run: npm ci # uruchom skrypty npm w srodowisku ciaglej integracji 
-  #   - run: npx cypress run
+      - run: npm ci # uruchom skrypty npm w srodowisku ciaglej integracji
+      #   - run: npx cypress run
       - run: npx cypress run --record
-        env: 
+        env:
           CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
           # przekazuje secret czyli ten kod taki token dla bezpieczenstwa
