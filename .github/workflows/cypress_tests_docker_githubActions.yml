@@ -1,4 +1,4 @@
-name: CypressTests1_z_DOCKEREM # nazwa pipeline'u (widoczna w GitHub Actions)
+name: CypressTests_z_DOCKEREM # nazwa pipeline'u (widoczna w GitHub Actions)
 
 on: [push, pull_request, workflow_dispatch]  # kiedy uruchamia się CI:
                                              # - push (każdy commit)
