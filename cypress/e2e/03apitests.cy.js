@@ -37,8 +37,8 @@ describe("REST API tests with Cypress", () => {
       expect(response.body)
         .property("value")
         .to.contain(searchedElementAsString);
+    console.log(response.body.value);
     });
 
-    console.log("@value");
   });
 });
