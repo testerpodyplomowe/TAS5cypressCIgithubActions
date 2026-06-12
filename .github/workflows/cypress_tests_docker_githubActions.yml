@@ -13,7 +13,7 @@ jobs:
       - name: Checkout repo
         uses: actions/checkout@v6  # pobiera Twój kod z repozytorium (Dockerfile, testy, config)
 
-      # --- NOWE: zamiast instalować Node + Cypress w CI ---
+      # --- NOWE: zamiast instalować Node + Cypress w CI wynikajace z dockera ---
       - name: Cleaning Docker
         run: docker system prune -a -f && docker builder prune -a -f
 
