@@ -1,4 +1,4 @@
-name: CypressTests1_maj_bez_DOCKERA # nazwa pipeline'u
+name: CypressTests_bez_DOCKERA # nazwa pipeline'u (widoczna w GitHub Actions)
 on: [push, pull_request, workflow_dispatch]
 
 jobs:
