@@ -24,7 +24,7 @@ export const parametersAccountManager = {
 export const URLs = {
   registerURL: parametersAccountManager.formURL + "/register.html",
   loginURL: parametersAccountManager.formURL + "/index.html",
-  loggedURL: parametersAccountManager.formURL + "/login1.html",
+  loggedURL: parametersAccountManager.formURL + "/login.html",
 };
 
 // Sales Manager w przyszłosci...
