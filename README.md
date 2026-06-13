@@ -28,6 +28,18 @@ npm install
 
 ## 🧪 Uruchamianie testów
 
+### Tryby uruchamiania testów
+
+Projekt obsługuje różne tryby testowania:
+
+| Tryb | Polecenie | Zastosowanie |
+|------|-----------|--------------|
+| **Interaktywny** | `npm test` | Lokalna praca nad testami (live debugging) |
+| **Headless** | `npm run cy:run` | Automatyczne uruchomienie wszystkich testów |
+| **Specyficzny test** | `npm run mytests` | Uruchomienie wybranego testu |
+| **API testy** | `npm run apitests` | Testowanie API bez interfejsu |
+| **Cloud** | `npm run cy:run-cloud` | Uruchomienie z rejestracją w chmurze Cypress |
+
 ### Dostępne skrypty npm
 
 | Skrypt | Polecenie | Opis |
@@ -103,12 +115,26 @@ Projekt zawiera `Dockerfile` do uruchamiania testów Cypress w kontenerze.
 
 ```dockerfile
 FROM cypress/browsers:latest
+
 WORKDIR /e2e
+
+# Kopiuj package.json i lock file najpierw dla lepszego cache'owania
+COPY package*.json ./
+
+# Instalacja zależności
+RUN npm ci && npx cypress install
+
+# Kopiuj resztę kodu
 COPY . .
-RUN npm install
-RUN npx cypress install
+
+# Uruchomienie testów w Firefox
 CMD ["npx", "cypress", "run", "--browser", "firefox"]
 ```
+
+**Optymalizacje:**
+- Używanie `npm ci` zamiast `npm install` (lepsze dla CI/CD)
+- Warstwowe kopiowanie dla lepszego cache'owania Docker'a
+- `.dockerignore` aby nie kopować niepotrzebnych plików
 
 ### Uruchomienie testów w Docker lokalnie
 

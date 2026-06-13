@@ -8,26 +8,19 @@ on:
 
 jobs:
   cypress:
-    runs-on: ubuntu-latest # GitHub tworzy świeży Linux (runner); # uruchamia na najnowszym ubuntu - uwaga w chmurze ! (nie musisz miec tego linuxa u siebie na kompie)
+    runs-on: ubuntu-latest # GitHub tworzy świeży Linux (runner)
 
     steps:
       - name: Checkout repo
         uses: actions/checkout@v6 # pobiera Twój kod z repozytorium (Dockerfile, testy, config)
 
-      # --- NOWE: zamiast instalować Node + Cypress w CI wynikajace z dockera ---
-      - name: Cleaning Docker
-        run: docker system prune -a -f && docker builder prune -a -f
-
       - name: Build Docker image
-        run:
-          docker build -t cypress-test . # buduje obraz z Twojego Dockerfile
-          # (tu dzieje się npm install + cypress install)
+        run: docker build -t cypress-test . # buduje obraz z Twojego Dockerfile
+        # (tu dzieje się npm install + cypress install)
 
-      # --- NOWE: uruchomienie testów w kontenerze ---
       - name: Run Cypress tests in Docker
-        run:
-          docker run --rm cypress-test # uruchamia kontener i testy Cypress
-          # --rm = usuń kontener po zakończeniu
+        run: docker run --rm cypress-test # uruchamia kontener i testy Cypress
+        # --rm = usuń kontener po zakończeniu
         env:
           CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
-          # przekazuje secret czyli ten kod taki token dla bezpieczenstwa
+          # przekazuje secret czyli token dla bezpieczeństwa
