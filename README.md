@@ -43,6 +43,11 @@ npm run cy:run
 npm run mytests
 ```
 
+### Uruchomienie testów API
+```bash
+npm run apitests
+```
+
 ### Uruchomienie testów w chmurze Cypress
 ```bash
 npm run cy:run-cloud
@@ -52,9 +57,11 @@ npm run cy:run-cloud
 
 ```
 cypress/
-├── e2e/              # Testy end-to-end
+├── e2e/              # Testy end-to-end i API
 │   ├── 01test.cy.js
-│   └── todo.cy.js
+│   ├── 02todo.cy.js
+│   ├── 03apitests.cy.js       # Testy API
+│   └── 03apitestyzajecia.cy.js # Testy API zajęcia
 ├── fixtures/         # Dane testowe
 │   └── parameters.js
 ├── support/          # Wspólne konfiguracje
