@@ -74,8 +74,65 @@ Wszystkie zależności instalowane automatycznie za pomocą `npm ci` (CI mode) l
 
 ## 🔄 GitHub Actions
 
-Projekt obsługuje automatyczną integrację z GitHub Actions do ciągłego testowania (CI/CD).
+Projekt obsługuje automatyczną integrację z GitHub Actions do ciągłego testowania (CI/CD). Dostępne są dwa workflow'i:
+
+### Workflow 1: CypressTests_bez_DOCKERA
+- **Plik:** `.github/workflows/cypress_tests_1.yml`
+- **Wyzwalacze:** push, pull request, workflow_dispatch (ręczne)
+- **Środowisko:** Ubuntu Latest z Node.js v24
+- **Proces:**
+  1. Pobiera kod z repozytorium
+  2. Instaluje Node.js v24
+  3. Uruchamia `npm ci` (instalacja zależności)
+  4. Uruchamia testy Cypress z rejestracją w chmurze Cypress
+- **Bezpieczeństwo:** Używa `CYPRESS_RECORD_KEY` z GitHub Secrets
+
+### Workflow 2: CypressTests_z_DOCKEREM
+- **Plik:** `.github/workflows/cypress_tests_docker_githubActions.yml`
+- **Wyzwalacze:** push, pull request, workflow_dispatch (ręczne)
+- **Środowisko:** Ubuntu Latest + Docker
+- **Proces:**
+  1. Pobiera kod z repozytorium
+  2. Czyszcza Docker (system prune, builder prune)
+  3. Buduje obraz Docker z `Dockerfile`
+  4. Uruchamia testy Cypress w kontenerze Docker
+- **Bezpieczeństwo:** Używa `CYPRESS_RECORD_KEY` z GitHub Secrets
+- **Zaleta:** Izolacja środowiska, reproducible builds
+
+## 🐳 Docker
+
+Projekt zawiera `Dockerfile` do uruchamiania testów Cypress w kontenerze.
+
+### Dockerfile konfiguracja
+
+```dockerfile
+FROM cypress/browsers:latest
+WORKDIR /e2e
+COPY . .
+RUN npm install
+RUN npx cypress install
+CMD ["npx", "cypress", "run", "--browser", "firefox"]
+```
+
+### Uruchomienie testów w Docker lokalnie
+
+```bash
+# Budowanie obrazu
+docker build -t cypress-test .
+
+# Uruchomienie testów
+docker run --rm cypress-test
+
+# Uruchomienie z mapowaniem wyników
+docker run --rm -v $(pwd)/cypress/reports:/e2e/cypress/reports cypress-test
+```
+
+### Zalety używania Docker'a
+- ✅ Identyczne środowisko (CI i lokalne)
+- ✅ Izolacja zależności
+- ✅ Łatwa reprodukcja błędów
+- ✅ Wsparcie dla wielu przeglądarek (Chromium, Firefox, Edge)
 
 ## 📊 Raporty
 
-Projekty generuje raporty testów za pomocą Mochawesome reportera, dostępne po uruchomieniu testów.
+Projekt generuje raporty testów za pomocą Mochawesome reportera, dostępne po uruchomieniu testów (zarówno lokalnie jak i w CI/CD).
