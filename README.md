@@ -142,8 +142,14 @@ CMD ["npx", "cypress", "run", "--browser", "firefox"]
 # Budowanie obrazu
 docker build -t cypress-test .
 
-# Uruchomienie testów
+# Uruchomienie testów (domyślnie Electron)
 docker run --rm cypress-test
+
+# Uruchomienie testów w Firefox
+docker run --rm cypress-test npx cypress run --browser firefox
+
+# Uruchomienie testów w Chromium
+docker run --rm cypress-test npx cypress run --browser chromium
 
 # Uruchomienie z mapowaniem wyników
 docker run --rm -v $(pwd)/cypress/reports:/e2e/cypress/reports cypress-test

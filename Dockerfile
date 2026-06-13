@@ -11,5 +11,5 @@ RUN npm ci && npx cypress install
 # Kopiuj resztę kodu
 COPY . .
 
-# Uruchomienie testów w Firefox
-CMD ["npx", "cypress", "run", "--browser", "firefox"]
+# Uruchomienie testów (domyślnie Electron, można wybrać inną: firefox, chromium, edge)
+CMD ["npx", "cypress", "run"]
