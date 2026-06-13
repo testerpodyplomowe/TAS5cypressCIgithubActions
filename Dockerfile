@@ -8,3 +8,4 @@ RUN npm install
 RUN npx cypress install
 
 CMD ["npx", "cypress", "run", "--browser", "firefox"]
+
