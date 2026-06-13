@@ -1,10 +1,11 @@
 name: CypressTests_z_DOCKEREMczerwiec # nazwa pipeline'u (widoczna w GitHub Actions)
 
 on:
-  [push, pull_request, workflow_dispatch] # kiedy uruchamia się CI:
-  # - push (każdy commit)
-  # - pull request
-  # - ręczne uruchomienie
+  push:
+    branches:
+      - main # uruchamia się tylko na push do main (np. po merge PR)
+  pull_request: # uruchamia się na każdy pull request
+  workflow_dispatch: # ręczne uruchomienie
 
 jobs:
   cypress:
