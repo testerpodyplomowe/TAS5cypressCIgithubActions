@@ -7,7 +7,7 @@ jobs:
 
     steps:
       - name: Checkout repo 
-        uses: actions/checkout@v6 # pobiera Twój kod z repozytorium (Dockerfile, testy, config)
+        uses: actions/checkout@v6 # pobiera Twój kod z repozytorium (testy, config itp.)
       - uses: actions/setup-node@v6 # krok 2 zainstaluj srodowisko nodejs
         with:
           node-version: 24 # sami okreslamy
