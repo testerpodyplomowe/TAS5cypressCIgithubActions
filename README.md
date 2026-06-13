@@ -28,37 +28,33 @@ npm install
 
 ## 🧪 Uruchamianie testów
 
-### Tryby uruchamiania testów
+### Otwieranie interfejsu Cypress (tryb interaktywny)
+```bash
+npm test
+```
 
-Projekt obsługuje różne tryby testowania:
+### Uruchomienie testów w trybie headless
+```bash
+npm run cy:run
+```
 
-| Tryb | Polecenie | Zastosowanie |
-|------|-----------|--------------|
-| **Interaktywny** | `npm test` | Lokalna praca nad testami (live debugging) |
-| **Headless** | `npm run cy:run` | Automatyczne uruchomienie wszystkich testów |
-| **Specyficzny test** | `npm run mytests` | Uruchomienie wybranego testu |
-| **API testy** | `npm run apitests` | Testowanie API bez interfejsu |
-| **Cloud** | `npm run cy:run-cloud` | Uruchomienie z rejestracją w chmurze Cypress |
+### Uruchomienie konkretnego testu
+```bash
+npm run mytests
+```
 
-### Dostępne skrypty npm
-
-| Skrypt | Polecenie | Opis |
-|--------|-----------|------|
-| `npm test` | `cypress open` | Otwiera interfejs Cypress (tryb interaktywny) |
-| `npm run cy:run` | `npx cypress run` | Uruchamia wszystkie testy w trybie headless |
-| `npm run mytests` | `npx cypress run --spec 'cypress/e2e/01test.cy.js'` | Uruchamia konkretny test (01test.cy.js) |
-| `npm run apitests` | `npx cypress run --spec 'cypress/e2e/03apitestyzajecia.cy.js'` | Uruchamia testy API |
-| `npm run cy:run-cloud` | `npx cypress run --record --key ...` | Uruchamia testy z rejestracją w chmurze Cypress |
+### Uruchomienie testów w chmurze Cypress
+```bash
+npm run cy:run-cloud
+```
 
 ## 📁 Struktura projektu
 
 ```
 cypress/
-├── e2e/              # Testy end-to-end i API
+├── e2e/              # Testy end-to-end
 │   ├── 01test.cy.js
-│   ├── 02todo.cy.js
-│   ├── 03apitests.cy.js       # Testy API
-│   └── 03apitestyzajecia.cy.js # Testy API zajęcia
+│   └── todo.cy.js
 ├── fixtures/         # Dane testowe
 │   └── parameters.js
 ├── support/          # Wspólne konfiguracje
@@ -115,26 +111,12 @@ Projekt zawiera `Dockerfile` do uruchamiania testów Cypress w kontenerze.
 
 ```dockerfile
 FROM cypress/browsers:latest
-
 WORKDIR /e2e
-
-# Kopiuj package.json i lock file najpierw dla lepszego cache'owania
-COPY package*.json ./
-
-# Instalacja zależności
-RUN npm ci && npx cypress install
-
-# Kopiuj resztę kodu
 COPY . .
-
-# Uruchomienie testów w Firefox
+RUN npm install
+RUN npx cypress install
 CMD ["npx", "cypress", "run", "--browser", "firefox"]
 ```
-
-**Optymalizacje:**
-- Używanie `npm ci` zamiast `npm install` (lepsze dla CI/CD)
-- Warstwowe kopiowanie dla lepszego cache'owania Docker'a
-- `.dockerignore` aby nie kopować niepotrzebnych plików
 
 ### Uruchomienie testów w Docker lokalnie
 
@@ -142,14 +124,8 @@ CMD ["npx", "cypress", "run", "--browser", "firefox"]
 # Budowanie obrazu
 docker build -t cypress-test .
 
-# Uruchomienie testów (domyślnie Electron)
+# Uruchomienie testów
 docker run --rm cypress-test
-
-# Uruchomienie testów w Firefox
-docker run --rm cypress-test npx cypress run --browser firefox
-
-# Uruchomienie testów w Chromium
-docker run --rm cypress-test npx cypress run --browser chromium
 
 # Uruchomienie z mapowaniem wyników
 docker run --rm -v $(pwd)/cypress/reports:/e2e/cypress/reports cypress-test
