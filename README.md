@@ -4,7 +4,11 @@ Projekt testów end-to-end (E2E) z wykorzystaniem frameworka **Cypress** i integ
 
 ## 📋 Opis projektu
 
-Projekt zawiera automatyczne testy funkcjonalne napisane w Cypress z integracją CI/CD za pośrednictwem GitHub Actions. Testy są uruchamiane zarówno lokalnie jak i w chmurze Cypress.
+Projekt zawiera automatyczne testy funkcjonalne napisane w Cypress z integracją CI/CD za pośrednictwem GitHub Actions. Obsługuje dwie metody uruchamiania:
+- Bezpośrednio na Ubuntu z Node.js (bez Docker'a)
+- W izolowanym kontenerze Docker dla lepszej reproducibility
+
+Testy są uruchamiane zarówno lokalnie jak i w chmurze Cypress z automatyczną rejestracją wyników.
 
 ## 🚀 Szybki Start
 
