@@ -6,7 +6,7 @@ jobs:
     runs-on: ubuntu-latest # GitHub tworzy świeży Linux (runner); # uruchamia na najnowszym ubuntu - uwaga w chmurze ! (nie musisz miec tego linuxa u siebie na kompie)
 
     steps:
-      - name: Checkout repoclear
+      - name: Checkout repo 
         uses: actions/checkout@v6 # pobiera Twój kod z repozytorium (Dockerfile, testy, config)
       - uses: actions/setup-node@v6 # krok 2 zainstaluj srodowisko nodejs
         with:

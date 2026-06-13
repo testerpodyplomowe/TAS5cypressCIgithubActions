@@ -42,7 +42,7 @@ describe("Web form verification", {testIsolation: false}, () => {
     );
   });
 
-  xit("should log out", () => {
-    //  cy.logoutFromApp()
+  it("should log out", () => {
+    cy.logoutFromApp(parametersAccountManager.logOutButton,URLs.loginURL)
   });
 });
