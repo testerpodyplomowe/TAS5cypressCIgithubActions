@@ -28,30 +28,15 @@ npm install
 
 ## 🧪 Uruchamianie testów
 
-### Otwieranie interfejsu Cypress (tryb interaktywny)
-```bash
-npm test
-```
+### Dostępne skrypty npm
 
-### Uruchomienie testów w trybie headless
-```bash
-npm run cy:run
-```
-
-### Uruchomienie konkretnego testu
-```bash
-npm run mytests
-```
-
-### Uruchomienie testów API
-```bash
-npm run apitests
-```
-
-### Uruchomienie testów w chmurze Cypress
-```bash
-npm run cy:run-cloud
-```
+| Skrypt | Polecenie | Opis |
+|--------|-----------|------|
+| `npm test` | `cypress open` | Otwiera interfejs Cypress (tryb interaktywny) |
+| `npm run cy:run` | `npx cypress run` | Uruchamia wszystkie testy w trybie headless |
+| `npm run mytests` | `npx cypress run --spec 'cypress/e2e/01test.cy.js'` | Uruchamia konkretny test (01test.cy.js) |
+| `npm run apitests` | `npx cypress run --spec 'cypress/e2e/03apitestyzajecia.cy.js'` | Uruchamia testy API |
+| `npm run cy:run-cloud` | `npx cypress run --record --key ...` | Uruchamia testy z rejestracją w chmurze Cypress |
 
 ## 📁 Struktura projektu
 
