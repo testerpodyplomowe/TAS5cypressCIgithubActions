@@ -1,10 +1,14 @@
-# TAS5 Cypress CI z GitHub Actions
+# TAS5 Cypress CI/CD z GitHub Actions i Docker
 
-Projekt testów end-to-end (E2E) z wykorzystaniem frameworka **Cypress** i integracji z **GitHub Actions**.
+Kompleksowy projekt testów end-to-end (E2E) z **Cypress**, integracją **CI/CD** w **GitHub Actions** i wsparcie **Docker**.
 
 ## 📋 Opis projektu
 
-Projekt zawiera automatyczne testy funkcjonalne napisane w Cypress z integracją CI/CD za pośrednictwem GitHub Actions. Testy są uruchamiane zarówno lokalnie jak i w chmurze Cypress.
+Projekt zawiera automatyczne testy funkcjonalne napisane w Cypress z dwoma metodami uruchamiania:
+- **Bezpośrednio na Ubuntu** - tradycyjne podejście z Node.js i GitHub Actions
+- **W kontenerze Docker** - izolowane środowisko dla spójności CI/CD
+
+Testy uruchamiają się na każdy push, pull request i mogą być uruchamiane ręcznie. Wyniki rejestrują się automatycznie w chmurze Cypress dla analizy i raportowania.
 
 ## 🚀 Szybki Start
 
