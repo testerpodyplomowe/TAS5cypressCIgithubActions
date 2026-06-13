@@ -1,21 +1,31 @@
 name: CypressTests_bez_DOCKERA # nazwa pipeline'u (widoczna w GitHub Actions)
-on: [push, pull_request, workflow_dispatch]
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
 
 jobs:
   cypress:
-    runs-on: ubuntu-latest # GitHub tworzy świeży Linux (runner); # uruchamia na najnowszym ubuntu - uwaga w chmurze ! (nie musisz miec tego linuxa u siebie na kompie)
+    runs-on: ubuntu-latest # GitHub tworzy świeży Linux (runner)
 
     steps:
-      - name: Checkout repo 
+      - name: Checkout repo
         uses: actions/checkout@v6 # pobiera Twój kod z repozytorium (testy, config itp.)
-      - uses: actions/setup-node@v6 # krok 2 zainstaluj srodowisko nodejs
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v6 # zainstaluj środowisko nodejs
         with:
-          node-version: 24 # sami okreslamy
+          node-version: 24 # sami określamy
           cache: npm
 
-      - run: npm ci # uruchom skrypty npm w srodowisku ciaglej integracji
-      #   - run: npx cypress run
-      - run: npx cypress run --record
+      - name: Install dependencies
+        run: npm ci # uruchom w środowisku ciągłej integracji
+
+      - name: Run Cypress tests
+        run: npx cypress run --record
         env:
           CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
-          # przekazuje secret czyli ten kod taki token dla bezpieczenstwa
+          # przekazuje secret czyli token dla bezpieczeństwa
