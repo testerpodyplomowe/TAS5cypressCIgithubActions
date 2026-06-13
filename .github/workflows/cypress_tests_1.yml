@@ -2,10 +2,10 @@ name: CypressTests_bez_DOCKERA # nazwa pipeline'u (widoczna w GitHub Actions)
 
 on:
   push:
-    branches:
-      - main # uruchamia się tylko na push do main (np. po merge PR)
-  pull_request: # uruchamia się na każdy pull request
-  workflow_dispatch: # ręczne uruchomienie
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
 
 jobs:
   cypress:
