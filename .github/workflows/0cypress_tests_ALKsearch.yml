@@ -25,7 +25,7 @@ jobs:
         run: npm ci # uruchom w środowisku ciągłej integracji
 
       - name: Run Cypress tests
-        run: npx cypress open --e2e --browser chrome --record
+        run: npx cypress run --e2e --browser chrome --record
         env:
           CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
           # przekazuje secret czyli token dla bezpieczeństwa

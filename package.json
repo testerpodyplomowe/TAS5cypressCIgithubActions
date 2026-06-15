@@ -5,7 +5,7 @@
   "main": "cypress.config.js",
   "scripts": {
     "test": "cypress open --e2e --browser chrome",
-    "cy:run": "npx cypress open --e2e --browser chrome",
+    "cy:run": "npx cypress run --e2e --browser chrome",
     "cy:run-cloud": "npx cypress run --record --key 75a02a2b-ac57-4608-b53e-a9c1b1e5bcd5",
     "mytests": "npx cypress run --browser chrome --spec cypress/e2e/00ALKsearch.cy.js",
     "apitests": "npx cypress run --spec 'cypress/e2e/03apitestyzajecia.cy.js'"
