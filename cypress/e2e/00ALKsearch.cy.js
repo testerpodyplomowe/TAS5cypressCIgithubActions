@@ -5,7 +5,7 @@ const testedPage = "https://www.kozminski.edu.pl";
 const phrase = "Selenium";
 const courseName = "Tester automatyzujący w Selenium";
 const studentName = "LidiaSobieska@T8.pl  ";
-const studentPass = "1234567890";
+const studentPass = "123456789";
 
 // przypadek testowy:
 // 1. wejdz na stronę ALK
