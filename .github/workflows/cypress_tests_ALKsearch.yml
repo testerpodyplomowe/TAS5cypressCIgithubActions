@@ -1,0 +1,31 @@
+name: CypressTests_ALKsearch_bez_DOCKERA # nazwa pipeline'u (widoczna w GitHub Actions)
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  cypress:
+    runs-on: ubuntu-latest # GitHub tworzy świeży Linux (runner)
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v6 # pobiera Twój kod z repozytorium (testy, config itp.)
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v6 # zainstaluj środowisko nodejs
+        with:
+          node-version: 24 # sami określamy
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci # uruchom w środowisku ciągłej integracji
+
+      - name: Run Cypress tests
+        run: npx cypress run --record
+        env:
+          CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
+          # przekazuje secret czyli token dla bezpieczeństwa

@@ -1,5 +1,4 @@
 /// <reference types="cypress" />
-import "cypress-plugin-tab";
 Cypress.on("uncaught:exception", () => false);
 
 const testedPage = "https://www.kozminski.edu.pl";
@@ -34,11 +33,6 @@ describe("ALK course search", () => {
 
   it("find course page", () => {
     cy.get(".search-results-container > #product").contains(courseName);
-    //
-    // cy.get("a > .button > span").click();
-    // cy.wait(5000);
-    // cy.get("a > .button > span").type("{tab}").type("{tab}")
-    // cy.type('Jan')
   });
 
   it("click on course page and SIGN UP to course", () => {

@@ -15,10 +15,11 @@ module.exports = defineConfig({
     setupNodeEvents(on, config) {
       require("cypress-mochawesome-reporter/plugin")(on);
     },
+    testIsolation: false,
     viewportWidth: 1920,
     viewportHeight: 1080,
-    chromeWebSecurity: false,
-    //defaultCommandTimeout: 8000,
+    chromeWebSecurity: true,
+    defaultCommandTimeout: 10000,
     watchForFileChanges: false,
     video: false,
   },
