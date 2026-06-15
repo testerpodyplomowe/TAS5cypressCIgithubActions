@@ -1,4 +1,4 @@
-name: CypressTests_ALKsearch_bez_DOCKERA # nazwa pipeline'u (widoczna w GitHub Actions)
+name: CypressTests_ALKsearch_bez_DOCKERA
 
 on:
   push:
